@@ -1,8 +1,14 @@
+import LocationService from "./location";
 class WeatherService {
   async getCurrentWeather() {
     const apiKey = process.env.REACT_APP_MY_API_KEY;
+    const position = await LocationService.getCurrentPosition();
     const response = await fetch(
-      "http://api.openweathermap.org/data/2.5/weather?lat=52.1802854&lon=21.020612&appid=" +
+      "http://api.openweathermap.org/data/2.5/weather?lat=" +
+        position.coords.latitude +
+        "&lon=" +
+        position.coords.longitude +
+        "&appid=" +
         apiKey +
         "&units=metric"
     );
@@ -13,6 +19,7 @@ class WeatherService {
       feelsLike: current.main.feels_like,
       windSpeed: current.wind.speed,
       humidity: current.main.humidity,
+      country: current.sys.country,
     };
   }
 }
