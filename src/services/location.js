@@ -1,3 +1,4 @@
+import CoordinatesModel from "../models/coordinates.model";
 class LocationService {
   getCurrentPosition() {
     if ("geolocation" in navigator) {
@@ -7,7 +8,19 @@ class LocationService {
       };
 
       return new Promise((resolve, reject) =>
-        navigator.geolocation.getCurrentPosition(resolve, reject, options)
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const coordinates = new CoordinatesModel(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+            //console.log(coordinates);
+
+            resolve(coordinates);
+          },
+          reject,
+          options
+        )
       );
     } else {
       console.log("Not Available");

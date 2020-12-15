@@ -1,44 +1,39 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import WeatherService from "./services/weather.js";
-//import LocationService from "./services/location";
+import LocationService from "./services/location";
 function App() {
+  const [dailyTemp, setDailyTemp] = useState();
   const [temp, setTemp] = useState(0);
-  const [cityName, setCityName] = useState("");
-  const [country, setCountry] = useState("");
-  const [firstDay, setFirstDay] = useState([]);
-  const [secondDay, setSecondDay] = useState([]);
-  const [thirdDay, setThirdDay] = useState([]);
-  const [fourthDay, setFourthDay] = useState([]);
-  const [fifthDay, setFifthDay] = useState([]);
-  const [sixthDay, setSixthDay] = useState([]);
-  const [seventhDay, setSeventhDay] = useState([]);
-
+  const [currentCoordinates, setCurrentCoordinates] = useState("");
+  //const [date, setDate] = useState("");
   useEffect(() => {
-    WeatherService.getCurrentWeather().then((current) => {
-      setTemp(current.temp);
-      setCityName(current.cityName);
-      setCountry(current.country);
+    LocationService.getCurrentPosition().then((coords) => {
+      setCurrentCoordinates(coords);
     });
   }, []);
   useEffect(() => {
-    WeatherService.getThisWeekWeather().then((daily) => {
-      setFirstDay(daily.firstDay);
-      setSecondDay(daily.secondDay);
-      setThirdDay(daily.thirdDay);
-      setFourthDay(daily.fourthDay);
-      setFifthDay(daily.fifthDay);
-      setSixthDay(daily.sixthDay);
-      setSeventhDay(daily.seventhDay);
-    });
-  });
+    if (currentCoordinates) {
+      WeatherService.getCurrentWeather(currentCoordinates).then((current) => {
+        setTemp(current.temp);
+      });
+    }
+  }, [currentCoordinates]);
+  useEffect(() => {
+    if (currentCoordinates) {
+      WeatherService.getThisWeekWeather(currentCoordinates).then((day) => {
+        setDailyTemp(day[1][0].temp.day);
+        //setDate(new Date(day[1][0].dt));
+      });
+    }
+  }, [currentCoordinates]);
+
   return (
     <div className="App">
-      <h1>
-        Temperatura en {cityName}:{temp}
-        {country}
-        {console.log(firstDay)}
-      </h1>
+      <h2>
+        Temperatura Hoy {temp}
+        Temperatura Manana{dailyTemp}
+      </h2>
     </div>
   );
 }
