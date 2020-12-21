@@ -17,7 +17,7 @@ class LocationService {
               position.coords.latitude,
               position.coords.longitude
             );
-            //console.log(coordinates);
+            
 
             resolve(coordinates);
           },
@@ -43,7 +43,6 @@ class LocationService {
     );
     const { address } = await response.json();
     const locationDetails = LocationModel.create(address);
-    console.log(locationDetails);
     return locationDetails;
   }
   async getCoordinatesForSearch(searchString) {
