@@ -1,7 +1,7 @@
-class CityModel {
+class SearchResult {
   constructor(cityName, CoordinatesModel) {
     this.cityName = cityName;
     this.CoordinatesModel = CoordinatesModel;
   }
 }
-export default CityModel;
+export default SearchResult;
