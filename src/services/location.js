@@ -1,6 +1,6 @@
 import CoordinatesModel from "../models/coordinates.model";
 import LocationModel from "../models/location.model";
-import CityModel from "../models/city.model";
+import SearchResultModel from "../models/searchResult.model.js";
 const apiKey = process.env.REACT_APP_MY_API_KEY_LOCATION;
 class LocationService {
   getCurrentPosition() {
@@ -58,7 +58,7 @@ class LocationService {
     if (options.length > 1) {
       for (let option of options) {
         if (option.class === "place") {
-          places.push(new CityModel(option.display_name, CoordinatesModel));
+          places.push(new SearchResultModel(option.display_name, CoordinatesModel));
         }
       }
     }
