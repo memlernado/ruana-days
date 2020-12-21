@@ -3,8 +3,8 @@ class LocationModel {
     this.city = city;
     this.country = country;
   }
-  static create(m) {
-    return new LocationModel(m);
+  static create(data) {
+    return new LocationModel(data);
   }
 }
 export default LocationModel;
