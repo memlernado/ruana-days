@@ -37,8 +37,8 @@ function App() {
   const [dailyDay, setDailyDay] = useState([]);
   const [dayCurrentIcon, setDayCurrentIcon] = useState("");
   const [dailyIcon, setDailyIcon] = useState([]);
-  const [temp, setTemp] = useState(0);
-  const [dailyTemp, setDailyTemp] = useState([]);
+  //const [temp, setTemp] = useState(0);
+  //const [dailyTemp, setDailyTemp] = useState([]);
   const [currentCoordinates, setCurrentCoordinates] = useState("");
   const [city, setCity] = useState("0");
   const [country, setCountry] = useState("");
@@ -52,7 +52,7 @@ function App() {
   useEffect(() => {
     if (currentCoordinates) {
       WeatherService.getCurrentWeather(currentCoordinates).then((current) => {
-        setTemp(current.temp);
+        //setTemp(current.temp);
         setWeekDay(current.numberDay);
         setDay(current.day);
         setMonth(current.month);
@@ -63,11 +63,11 @@ function App() {
   useEffect(() => {
     if (currentCoordinates) {
       WeatherService.getThisWeekWeather(currentCoordinates).then((days) => {
-        setDailyTemp(
-          days.map((day) => {
-            return day.temp;
-          })
-        );
+        // setDailyTemp(
+        //   days.map((day) => {
+        //     return day.temp;
+        //   })
+        // );
 
         setDailyWeekDay(
           days.map((day) => {
