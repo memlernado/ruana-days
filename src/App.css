@@ -1,7 +1,55 @@
 .App {
   text-align: center;
 }
+.actualCity {
+  position: absolute;
+  top: 0.5%;
+  right: 80%;
+  color: #ffffff;
+}
+.dayActual {
+  position: absolute;
+  top: 80%;
+  right: 89%;
+  color: #ffffff;
+  line-height: 60%;
+}
 
+.firstDay {
+  position: absolute;
+  top: 80%;
+  right: 72%;
+  color: #ffffff;
+  line-height: 60%;
+}
+.secondDay {
+  position: absolute;
+  top: 80%;
+  right: 54%;
+  color: #ffffff;
+  line-height: 60%;
+}
+.thirdDay {
+  position: absolute;
+  top: 80%;
+  right: 36%;
+  color: #ffffff;
+  line-height: 60%;
+}
+.fourthDay {
+  position: absolute;
+  top: 80%;
+  right: 18%;
+  color: #ffffff;
+  line-height: 60%;
+}
+.fifthDay {
+  position: absolute;
+  top: 80%;
+  right: 3%;
+  color: #ffffff;
+  line-height: 60%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
