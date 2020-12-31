@@ -110,68 +110,70 @@ function App() {
 
   return (
     <div className="App">
-      <div className="actualCity">
+      <div className="cityLabel">
         <LocationLabel city={city} country={country} />
       </div>
-      <div className="dayActual">
-        <Day
-          //temp={temp}
-          //ruana="ruana"
-          icon={dayCurrentIcon}
-          weekDay={weekDays[weekDay]}
-          day={day}
-          month={months[month]}
-        />
-      </div>
-      <div className="firstDay">
-        <Day
-          //temp={dailyTemp}
-          //ruana="ruana"
-          icon={dailyIcon[1]}
-          weekDay={weekDays[dailyWeekDay[1]]}
-          day={dailyDay[1]}
-          month={months[dailyMonth[1]]}
-        />
-      </div>
-      <div className="secondDay">
-        <Day
-          //temp={dailyTemp}
-          //ruana="ruana"
-          icon={dailyIcon[2]}
-          weekDay={weekDays[dailyWeekDay[2]]}
-          day={dailyDay[2]}
-          month={months[dailyMonth[2]]}
-        />
-      </div>
-      <div className="thirdDay">
-        <Day
-          //temp={dailyTemp}
-          //ruana="ruana"
-          icon={dailyIcon[3]}
-          weekDay={weekDays[dailyWeekDay[3]]}
-          day={dailyDay[3]}
-          month={months[dailyMonth[3]]}
-        />
-      </div>
-      <div className="fourthDay">
-        <Day
-          //temp={dailyTemp}
-          //ruana="ruana"
-          icon={dailyIcon[4]}
-          weekDay={weekDays[dailyWeekDay[4]]}
-          day={dailyDay[4]}
-          month={months[dailyMonth[4]]}
-        />
-      </div>
-      <div className="fifthDay">
-        <Day
-          //temp={dailyTemp}
-          //ruana="ruana"
-          icon={dailyIcon[5]}
-          weekDay={weekDays[dailyWeekDay[5]]}
-          day={dailyDay[5]}
-          month={months[dailyMonth[5]]}
-        />
+      <div className="days">
+        <div className="day">
+          <Day
+            //temp={temp}
+            //ruana="ruana"
+            icon={dayCurrentIcon}
+            weekDay={weekDays[weekDay]}
+            day={day}
+            month={months[month]}
+          />
+        </div>
+        <div className="day">
+          <Day
+            //temp={dailyTemp}
+            //ruana="ruana"
+            icon={dailyIcon[1]}
+            weekDay={weekDays[dailyWeekDay[1]]}
+            day={dailyDay[1]}
+            month={months[dailyMonth[1]]}
+          />
+        </div>
+        <div className="day">
+          <Day
+            //temp={dailyTemp}
+            //ruana="ruana"
+            icon={dailyIcon[2]}
+            weekDay={weekDays[dailyWeekDay[2]]}
+            day={dailyDay[2]}
+            month={months[dailyMonth[2]]}
+          />
+        </div>
+        <div className="day">
+          <Day
+            //temp={dailyTemp}
+            //ruana="ruana"
+            icon={dailyIcon[3]}
+            weekDay={weekDays[dailyWeekDay[3]]}
+            day={dailyDay[3]}
+            month={months[dailyMonth[3]]}
+          />
+        </div>
+        <div className="day">
+          <Day
+            //temp={dailyTemp}
+            //ruana="ruana"
+            icon={dailyIcon[4]}
+            weekDay={weekDays[dailyWeekDay[4]]}
+            day={dailyDay[4]}
+            month={months[dailyMonth[4]]}
+          />
+        </div>
+        <div className="day">
+          <Day
+            //temp={dailyTemp}
+            //ruana="ruana"
+            icon={dailyIcon[5]}
+            weekDay={weekDays[dailyWeekDay[5]]}
+            day={dailyDay[5]}
+            month={months[dailyMonth[5]]}
+          />
+        </div>
       </div>
     </div>
   );

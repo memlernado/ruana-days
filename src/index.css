@@ -11,9 +11,10 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body,
+html,
+#root {
+  height: 100vh;
 }
 .day {
   line-height: 5px;
