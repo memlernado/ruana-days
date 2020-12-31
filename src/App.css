@@ -1,5 +1,23 @@
 .App {
   text-align: center;
+  height: 100%;
+  position: relative;
+}
+.days {
+  display: flex;
+  position: absolute;
+  top: 80%;
+  width: 100%;
+  justify-content: space-around;
+}
+.cityLabel {
+  position: absolute;
+  top: 0.5%;
+  right: 80%;
+  color: #ffffff;
+}
+.day {
+  color: #ffffff;
 }
 
 .App-logo {
