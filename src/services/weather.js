@@ -24,8 +24,7 @@ class WeatherService {
         apiKey
     );
     const { daily } = await response.json();
-
-    const days = daily.map((day) => {
+    const days = daily.slice(1, -1).map((day) => {
       return weatherModel.create(day);
     });
     return days;

@@ -124,56 +124,21 @@ function App() {
             month={months[month]}
           />
         </div>
-        <div className="day">
-          <Day
-            //temp={dailyTemp}
-            //ruana="ruana"
-            icon={dailyIcon[1]}
-            weekDay={weekDays[dailyWeekDay[1]]}
-            day={dailyDay[1]}
-            month={months[dailyMonth[1]]}
-          />
-        </div>
-        <div className="day">
-          <Day
-            //temp={dailyTemp}
-            //ruana="ruana"
-            icon={dailyIcon[2]}
-            weekDay={weekDays[dailyWeekDay[2]]}
-            day={dailyDay[2]}
-            month={months[dailyMonth[2]]}
-          />
-        </div>
-        <div className="day">
-          <Day
-            //temp={dailyTemp}
-            //ruana="ruana"
-            icon={dailyIcon[3]}
-            weekDay={weekDays[dailyWeekDay[3]]}
-            day={dailyDay[3]}
-            month={months[dailyMonth[3]]}
-          />
-        </div>
-        <div className="day">
-          <Day
-            //temp={dailyTemp}
-            //ruana="ruana"
-            icon={dailyIcon[4]}
-            weekDay={weekDays[dailyWeekDay[4]]}
-            day={dailyDay[4]}
-            month={months[dailyMonth[4]]}
-          />
-        </div>
-        <div className="day">
-          <Day
-            //temp={dailyTemp}
-            //ruana="ruana"
-            icon={dailyIcon[5]}
-            weekDay={weekDays[dailyWeekDay[5]]}
-            day={dailyDay[5]}
-            month={months[dailyMonth[5]]}
-          />
-        </div>
+
+        {dailyDay.map((d, i) => {
+          return (
+            <div className="day">
+              <Day
+                //temp={dailyTemp}
+                //ruana="ruana"
+                icon={dailyIcon[i]}
+                weekDay={weekDays[dailyWeekDay[i]]}
+                day={dailyDay[i]}
+                month={months[dailyMonth[i]]}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
