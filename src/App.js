@@ -4,6 +4,7 @@ import WeatherService from "./services/weather.js";
 import LocationService from "./services/location";
 import LocationLabel from "./components/locationLabel";
 import Day from "./components/day";
+import SearchBar from "./components/searchBar"
 
 function App() {
   const weekDays = [
@@ -37,13 +38,14 @@ function App() {
   const [dailyDay, setDailyDay] = useState([]);
   const [dayCurrentIcon, setDayCurrentIcon] = useState("");
   const [dailyIcon, setDailyIcon] = useState([]);
-  //const [temp, setTemp] = useState(0);
-  //const [dailyTemp, setDailyTemp] = useState([]);
+  const [temp, setTemp] = useState(0);
+  const [dailyTemp, setDailyTemp] = useState([]);
   const [currentCoordinates, setCurrentCoordinates] = useState("");
-  const [city, setCity] = useState("0");
+  const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  //const [places, setPlaces] = useState([0]);
-
+  const [places, setPlaces] = useState([]);
+  const [search, setSearch] = useState('polonia')
+  const [value, setValue] = useState("")
   useEffect(() => {
     LocationService.getCurrentPosition().then((coords) => {
       setCurrentCoordinates(coords);
@@ -52,7 +54,7 @@ function App() {
   useEffect(() => {
     if (currentCoordinates) {
       WeatherService.getCurrentWeather(currentCoordinates).then((current) => {
-        //setTemp(current.temp);
+        setTemp(current.temp);
         setWeekDay(current.numberDay);
         setDay(current.day);
         setMonth(current.month);
@@ -63,11 +65,11 @@ function App() {
   useEffect(() => {
     if (currentCoordinates) {
       WeatherService.getThisWeekWeather(currentCoordinates).then((days) => {
-        // setDailyTemp(
-        //   days.map((day) => {
-        //     return day.temp;
-        //   })
-        // );
+        setDailyTemp(
+          days.map((day) => {
+            return day.temp.day;
+          })
+        );
 
         setDailyWeekDay(
           days.map((day) => {
@@ -101,17 +103,23 @@ function App() {
         }
       );
     }
-  }, [currentCoordinates]);
-  // useEffect(() => {
-  //   LocationService.getCoordinatesForSearch("polonia").then((places) => {
-  //     setPlaces(places);
-  //   });
-  // }, []);
+    else {
 
+    }
+  }, [currentCoordinates]);
+  useEffect(() => {
+    if (search) {
+      LocationService.getCoordinatesForSearch(search).then((places) => {
+        setPlaces(places);
+      })
+    }
+  }, [search]);
+  console.log(places)
   return (
     <div className="App">
-      <div className="cityLabel">
+      <div className="header">
         <LocationLabel city={city} country={country} />
+        <SearchBar value={value} valueOnChange={(e) => setValue(e.target.value)} places={places} submit={setSearch} />
       </div>
       <div className="days">
         <div className="day">
@@ -129,7 +137,7 @@ function App() {
           return (
             <div className="day">
               <Day
-                //temp={dailyTemp}
+                //temp={dailyTemp[i]}
                 //ruana="ruana"
                 icon={dailyIcon[i]}
                 weekDay={weekDays[dailyWeekDay[i]]}
