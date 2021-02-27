@@ -1,47 +1,70 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const Form = styled.form`
+  position: relative;
+`;
+
 const SearchResult = styled.div`
   background-color: black;
+  cursor: pointer;
   padding: 25px;
   &:hover {
     background-color: white;
     color: black;
   }
 `;
+const SearchBarInput = styled.input`
+  width: 20rem;
+  height: 2rem;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  &:focus {
+    opacity: 0.8;
+    color: black;
+    &::placeholder {
+      color: black;
+    }
+  }
+`;
+
+const SearchResultsBox = styled.div`
+  width: 20rem;
+  border-radius: 5px;
+  margin: 5px 0;
+  position: absolute;
+  max-height: 500px;
+  overflow-y: auto;
+`;
 function SearchBar(props) {
-  const [searchValue, setSearchValue] = useState();
+  const [searchValue, setSearchValue] = useState("");
   const [isResultBoxOpen, setIsResultBoxOpen] = useState(false);
-  const BarStyling = {
-    width: "20rem",
-    background: "#F2F1F9",
-    opacity: "0.5",
-    padding: "0.5rem",
-    borderRadius: "30px",
-  };
   return (
-    <form
+    <Form
       onSubmit={(e) => {
         e.preventDefault();
         props.submit(searchValue);
         setIsResultBoxOpen(true);
+        setSearchValue("");
       }}
+      onBlur={() => setIsResultBoxOpen(false)}
     >
-      <input
-        style={BarStyling}
+      <SearchBarInput
         type="search"
         value={searchValue}
-        placeholder={"search country"}
+        placeholder={"Search city ..."}
         onChange={(e) => setSearchValue(e.target.value)}
-      ></input>
-
+      />
       {isResultBoxOpen && (
-        <div>
+        <SearchResultsBox>
           {props.places.map((place, index) => {
-            console.log(placee);
             return (
               <SearchResult
-                onClick={() => {
+                onMouseDown={() => {
                   props.onLocationSelected(place.coordinatesModel);
                   setIsResultBoxOpen(false);
                 }}
@@ -51,9 +74,9 @@ function SearchBar(props) {
               </SearchResult>
             );
           })}
-        </div>
+        </SearchResultsBox>
       )}
-    </form>
+    </Form>
   );
 }
 export default SearchBar;
