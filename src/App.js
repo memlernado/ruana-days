@@ -4,7 +4,7 @@ import WeatherService from "./services/weather.js";
 import LocationService from "./services/location";
 import LocationLabel from "./components/locationLabel";
 import Day from "./components/day";
-import SearchBar from "./components/searchBar"
+import SearchBar from "./components/searchBar";
 
 function App() {
   const weekDays = [
@@ -44,8 +44,7 @@ function App() {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [places, setPlaces] = useState([]);
-  const [search, setSearch] = useState('polonia')
-  const [value, setValue] = useState("")
+  const [search, setSearch] = useState("");
   useEffect(() => {
     LocationService.getCurrentPosition().then((coords) => {
       setCurrentCoordinates(coords);
@@ -102,24 +101,29 @@ function App() {
           setCountry(locationDetails.country);
         }
       );
-    }
-    else {
-
+    } else {
     }
   }, [currentCoordinates]);
   useEffect(() => {
     if (search) {
       LocationService.getCoordinatesForSearch(search).then((places) => {
         setPlaces(places);
-      })
+      });
     }
   }, [search]);
-  console.log(places)
+  console.log(places);
   return (
     <div className="App">
       <div className="header">
         <LocationLabel city={city} country={country} />
-        <SearchBar value={value} valueOnChange={(e) => setValue(e.target.value)} places={places} submit={setSearch} />
+        <SearchBar
+          places={places}
+          submit={(newSearch) => setSearch(newSearch)}
+          onLocationSelected={(newLocation) =>
+            // console.log(currentCoordinates)
+            setCurrentCoordinates(newLocation)
+          }
+        />
       </div>
       <div className="days">
         <div className="day">

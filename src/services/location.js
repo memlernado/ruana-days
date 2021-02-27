@@ -18,12 +18,11 @@ class LocationService {
               position.coords.longitude
             );
 
-
             resolve(coordinates);
           },
           () => {
-            const defaultCoords = new CoordinatesModel(-52.696361, -59.211873)
-            resolve(defaultCoords)
+            const defaultCoords = new CoordinatesModel(-52.696361, -59.211873);
+            resolve(defaultCoords);
           },
           options
         )
@@ -37,12 +36,12 @@ class LocationService {
   async getLocationDetails(latlon) {
     const response = await fetch(
       "https://us1.locationiq.com/v1/reverse.php?key=" +
-      apiKey +
-      "&lat=" +
-      latlon.lat +
-      "&lon=" +
-      latlon.lon +
-      "&format=json"
+        apiKey +
+        "&lat=" +
+        latlon.lat +
+        "&lon=" +
+        latlon.lon +
+        "&format=json"
     );
     const { address } = await response.json();
     const locationDetails = LocationModel.create(address);
@@ -51,21 +50,26 @@ class LocationService {
   async getCoordinatesForSearch(searchString) {
     const response = await fetch(
       "https://us1.locationiq.com/v1/search.php?key=" +
-      apiKey +
-      "&q=" +
-      searchString +
-      "&format=json"
+        apiKey +
+        "&q=" +
+        searchString +
+        "&format=json"
     );
     const options = await response.json();
     let places = [];
     if (options.length > 1) {
       for (let option of options) {
         if (option.class === "place") {
-          places.push(new SearchResultModel(option.display_name, new CoordinatesModel()));
+          places.push(
+            new SearchResultModel(
+              option.display_name,
+              new CoordinatesModel(option.lat, option.lon)
+            )
+          );
         }
       }
     }
-    console.log(places)
+    console.log(places);
     return places;
   }
 }

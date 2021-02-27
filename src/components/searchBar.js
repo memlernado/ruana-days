@@ -1,31 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
+
+const SearchResult = styled.div`
+  background-color: black;
+  padding: 25px;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+`;
 function SearchBar(props) {
-    const BarStyling = { width: "20rem", background: "#F2F1F9", opacity: "0.5", padding: "0.5rem", borderRadius: "30px" };
-    return (
+  const [searchValue, setSearchValue] = useState();
+  const [isResultBoxOpen, setIsResultBoxOpen] = useState(false);
+  const BarStyling = {
+    width: "20rem",
+    background: "#F2F1F9",
+    opacity: "0.5",
+    padding: "0.5rem",
+    borderRadius: "30px",
+  };
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        props.submit(searchValue);
+        setIsResultBoxOpen(true);
+      }}
+    >
+      <input
+        style={BarStyling}
+        type="search"
+        value={searchValue}
+        placeholder={"search country"}
+        onChange={(e) => setSearchValue(e.target.value)}
+      ></input>
 
-        <form onSubmit={(e) => {
-            e.preventDefault()
-            return props.submit(props.value)
-        }} >
-            <input
-                style={BarStyling}
-                type="search"
-                value={props.value}
-                placeholder={"search country"}
-                list="places"
-                onChange={props.valueOnChange}
-            >
-            </input>
-
-            <button type='submit'></button>
-
-            <datalist id='places'>
-                {props.places.map((place) => {
-                    return <option value={place.cityName}></option>
-                })}
-            </datalist>
-        </ form>
-
-    )
+      {isResultBoxOpen && (
+        <div>
+          {props.places.map((place, index) => {
+            console.log(placee);
+            return (
+              <SearchResult
+                onClick={() => {
+                  props.onLocationSelected(place.coordinatesModel);
+                  setIsResultBoxOpen(false);
+                }}
+                key={index}
+              >
+                {place.cityName}
+              </SearchResult>
+            );
+          })}
+        </div>
+      )}
+    </form>
+  );
 }
-export default SearchBar
+export default SearchBar;
