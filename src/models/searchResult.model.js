@@ -1,6 +1,6 @@
 class SearchResult {
-  constructor(cityName, CoordinatesModel) {
-    this.coordinatesModel = CoordinatesModel;
+  constructor(cityName, coordinatesModel) {
+    this.coordinatesModel = coordinatesModel;
     this.cityName = cityName;
   }
 }
