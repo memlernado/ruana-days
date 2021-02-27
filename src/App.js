@@ -127,46 +127,51 @@ function App() {
   }, [search]);
   console.log(places);
   return (
-    <div className="App">
-      <div className="header">
-        <LocationLabel city={city} country={country} />
-        <SearchBar
-          places={places}
-          submit={(newSearch) => setSearch(newSearch)}
-          onLocationSelected={(newLocation) =>
-            // console.log(currentCoordinates)
-            setCurrentCoordinates(newLocation)
-          }
-        />
-      </div>
-      <div className="days">
-        <div className="day">
-          <Day
-            //temp={temp}
-            //ruana="ruana"
-            icon={dayCurrentIcon}
-            weekDay={weekDays[weekDay]}
-            day={day}
-            month={months[month]}
-          />
-        </div>
-
-        {dailyDay.map((d, i) => {
-          return (
+    <>
+      <div className="App">
+        <div className="background"></div>
+        <div className="app-container">
+          <div className="header">
+            <LocationLabel city={city} country={country} />
+            <SearchBar
+              places={places}
+              submit={(newSearch) => setSearch(newSearch)}
+              onLocationSelected={(newLocation) =>
+                // console.log(currentCoordinates)
+                setCurrentCoordinates(newLocation)
+              }
+            />
+          </div>
+          <div className="days">
             <div className="day">
               <Day
-                //temp={dailyTemp[i]}
+                //temp={temp}
                 //ruana="ruana"
-                icon={dailyIcon[i]}
-                weekDay={weekDays[dailyWeekDay[i]]}
-                day={dailyDay[i]}
-                month={months[dailyMonth[i]]}
+                icon={dayCurrentIcon}
+                weekDay={weekDays[weekDay]}
+                day={day}
+                month={months[month]}
               />
             </div>
-          );
-        })}
+
+            {dailyDay.map((d, i) => {
+              return (
+                <div className="day">
+                  <Day
+                    //temp={dailyTemp[i]}
+                    //ruana="ruana"
+                    icon={dailyIcon[i]}
+                    weekDay={weekDays[dailyWeekDay[i]]}
+                    day={dailyDay[i]}
+                    month={months[dailyMonth[i]]}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

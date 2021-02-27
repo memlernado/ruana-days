@@ -1,19 +1,19 @@
+/* html {
+
+} */
+
 body {
   font-family: "Philosopher", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./wallpapers/winter3.jpg") no-repeat center center fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
 }
 body,
 html,
 #root {
   height: 100vh;
+  overflow: hidden;
 }
 
 .day {

@@ -51,7 +51,10 @@ function SearchBar(props) {
         setIsResultBoxOpen(true);
         setSearchValue("");
       }}
-      onBlur={() => setIsResultBoxOpen(false)}
+      onBlur={() => {
+        setIsResultBoxOpen(false);
+        setSearchValue("");
+      }}
     >
       <SearchBarInput
         type="search"
