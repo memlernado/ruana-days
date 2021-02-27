@@ -145,7 +145,7 @@ function App() {
           <div className="days">
             <div className="day">
               <Day
-                //temp={temp}
+                temp={temp}
                 //ruana="ruana"
                 icon={dayCurrentIcon}
                 weekDay={weekDays[weekDay]}
@@ -158,7 +158,7 @@ function App() {
               return (
                 <div className="day">
                   <Day
-                    //temp={dailyTemp[i]}
+                    temp={dailyTemp[i]}
                     //ruana="ruana"
                     icon={dailyIcon[i]}
                     weekDay={weekDays[dailyWeekDay[i]]}
