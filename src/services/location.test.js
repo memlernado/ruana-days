@@ -27,7 +27,7 @@ describe("getCurrentPosition should work", () => {
       Promise.resolve(error())
     );
     const result = await LocationService.getCurrentPosition();
-    const expected = new CoordinatesModel(-52.696361, -59.211873);
+    const expected = new CoordinatesModel(27.1127, 109.3497);
 
     expect(getCurrentPositionMock).toBeCalledTimes(1);
     expect(result).toBeInstanceOf(CoordinatesModel);
@@ -35,11 +35,10 @@ describe("getCurrentPosition should work", () => {
     expect(result.lon).toBe(expected.lon);
   });
   test("It should return default coordinates if geolocation is not available in navigator", async () => {
-    global.navigator.geolocation = undefined;
+    delete global.navigator.geolocation;
     const result = await LocationService.getCurrentPosition();
-    const expected = new CoordinatesModel(-52.696361, -59.211873);
+    const expected = new CoordinatesModel(27.1127, 109.3497);
 
-    expect(getCurrentPositionMock).toBeCalledTimes(1);
     expect(result).toBeInstanceOf(CoordinatesModel);
     expect(result.lat).toBe(expected.lat);
     expect(result.lon).toBe(expected.lon);

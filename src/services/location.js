@@ -21,15 +21,18 @@ class LocationService {
             resolve(coordinates);
           },
           () => {
-            const defaultCoords = new CoordinatesModel(-52.696361, -59.211873);
+            const defaultCoords = new CoordinatesModel(27.1127, 109.3497);
             resolve(defaultCoords);
           },
           options
         )
       );
     } else {
-      console.log("Not Available");
-      return { coords: { latitude: -51.6965291, longitude: -58.9916665 } };
+      return new Promise((resolve, reject) => {
+        const defaultCoords = new CoordinatesModel(27.1127, 109.3497);
+        resolve(defaultCoords);
+      });
+      // return { coords: { latitude: -51.6965291, longitude: -58.9916665 } };
       //throw new Error("Error Code ");
     }
   }
