@@ -12,7 +12,8 @@
   height: 100%;
   width: 100%;
   /*Background*/
-  background: url("./wallpapers/wallpaper02.jpg") no-repeat center center fixed;
+  background: url("https://source.unsplash.com/1600x900/?nature") no-repeat
+    center center fixed;
   /* background: url("https://picsum.photos/seed/ruanadays/1400/1050") no-repeat
     center center fixed; */
   background-size: 150vw 150vh;
@@ -36,7 +37,8 @@
   z-index: 2;
 
   /**/
-  background: url("./wallpapers/wallpaper02.jpg") no-repeat center center fixed;
+  background: url("https://source.unsplash.com/1600x900/?nature") no-repeat
+    center center fixed;
   /* background: url("https://picsum.photos/seed/ruanadays/1400/1050") no-repeat
     center center fixed; */
   background-size: cover;

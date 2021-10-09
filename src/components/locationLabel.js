@@ -9,6 +9,7 @@ const LocationLabelContainer = styled.div`
 `;
 
 function LocationLabel(props) {
+  const icon = "http://openweathermap.org/img/wn/" + props.icon + "@2x.png";
   let country;
   if (props.city !== undefined) {
     country = <h2>{props.country}</h2>;
@@ -17,7 +18,11 @@ function LocationLabel(props) {
   }
   return (
     <LocationLabelContainer>
-      <h1>{props.city}</h1>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <img src={icon} alt="icon" width="42" heigh="42" className="icon" />
+        <h1>{props.city}</h1>
+      </div>
+
       {country}
     </LocationLabelContainer>
   );

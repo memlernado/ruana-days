@@ -132,7 +132,11 @@ function App() {
         <div className="background"></div>
         <div className="app-container">
           <div className="header">
-            <LocationLabel city={city} country={country} />
+            <LocationLabel
+              city={city}
+              country={country}
+              icon={dayCurrentIcon}
+            />
             <SearchBar
               places={places}
               submit={(newSearch) => setSearch(newSearch)}
